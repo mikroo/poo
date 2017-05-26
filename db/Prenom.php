@@ -4,16 +4,23 @@ class Prenom
 	private $_id;
 	private $_prenom;
 
+	// Ajouter un constructeur
+	public function __construct($donnees)
+	{
+		$this->hydrate($donnees);
+	}
+
 	// Un tableau de données doit être passé à la fonction (d'où le préfixe array)
 	public function hydrate(array $donnees)
 	{
-		foreach ($donnees as $key => $value) {
+		foreach ($donnees as $key => $value) 
+		{
 			$method = 'set'.ucfirst($key);
 
-			if(method_exists($this,$method))
+			if(method_exists($this, $method))
 			{
 				// On appelle le setter.
-				$this->method($value);
+				$this->$method($value);
 			}
 		}
 		/*
@@ -61,7 +68,7 @@ class Prenom
 		// On vérifie qu'il s'agit bien d'une chaine de caractères.
 		if(is_string($prenom))
 		{
-			$this->_prenom = $prenom
+			$this->_prenom = $prenom;
 		}
 	}
 }
